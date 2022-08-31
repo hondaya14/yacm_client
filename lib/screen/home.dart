@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yacm_client/screen/components/assetImage.dart';
 
 class Home extends StatelessWidget {
   final String title;
@@ -12,29 +13,27 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Visibility(
-              visible: false,
+      body: Stack(children: [
+        tacyas(),
+        LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
               child: Center(
-                child: Image.asset(
-                  'assets/tacyas_dot_c.PNG',
-                  color: const Color.fromRGBO(255, 255, 255, 0.2),
-                  colorBlendMode: BlendMode.modulate,
+                child: Column(
+                  children: const [
+                    Text(
+                      'Yasunaga Lab',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Center(
-              child: Column(
-                children: const [
-                  Text('登録する'),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+      ]),
     );
   }
 }
